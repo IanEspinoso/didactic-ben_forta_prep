@@ -4,6 +4,7 @@ Repository to train SQL, following Ben Forta's Teach Yourself SQL book.
 ## 📚 About the Book
 
 Once upon a time was the best book on SQL I could land my hands on.
+
 This repo documents my take on the exercises suggested through a practice-oriented book.
 
 ---
