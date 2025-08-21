@@ -1,20 +1,19 @@
 /* -- Exercise 1
 
-SELECT COuNT(*) AS order_lines
+SELECT COUNT(*) AS order_lines
 FROM OrderItems
-GROuP BY order_num
+GROUP BY order_num
 ORDER BY order_lines; */
 
 
-/* -- Exercise 2
+/* -- Exercise 2: With my own take, asking for the name of the product with lowest price
 
-SELECT prod_name
+SELECT vend_id AS salesperson, TRIM(prod_name) AS cheapest_item, prod_price AS price
 FROM Products
-WHERE prod_price
-SELECT prod_id, MIN(prod_price) AS cheapest_item
-FROM Products
-GROuP BY vend_id
-ORDER BY cheapest_item; */
+WHERE prod_price IN (SELECT MIN(prod_price)
+	                 FROM Products
+                     GROUP BY vend_id)
+ORDER BY prod_price; */
 
 
 /* -- Exercise 3
@@ -22,7 +21,7 @@ ORDER BY cheapest_item; */
 SELECT order_num
 FROM OrderItems
 WHERE quantity >= 100
-GROuP BY order_num; */
+GROUP BY order_num; */
 
 
 /* -- Exercise 4
@@ -33,7 +32,10 @@ WHERE order_price >= 1000
 ORDER BY order_num; */
 
 
--- Exercise 5
+/* -- Exercise 5
 
-
-
+SELECT order_num, COUNT(*) AS items
+FROM OrderItems
+GROUP BY order_num -- The grouping should be instructed to the non-aggregated columns
+HAVING COUNT(*) >= 3
+ORDER BY items, order_num; */
